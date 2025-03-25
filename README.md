@@ -48,7 +48,7 @@ The system was built to:
 
 1. Clone the repository:
    ```bash
-   git clone [repository-url]
+   git clone https://github.com/sourav25-web/Hospital-Management-System-Receptionist-Interface.git
    cd HospitalManagementSystem
    ```
 
@@ -127,15 +127,3 @@ HospitalManagementSystem/
 ├── manage.py          # Django management script
 └── requirements.txt   # Project dependencies
 ```
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Support
-
-For support, please open an issue in the repository or contact the development team. 
