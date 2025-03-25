@@ -1,0 +1,115 @@
+{% extends 'receptionist/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="page-header">
+                <i class="fas fa-clipboard-list me-2"></i>Patient Records
+            </h2>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" id="patientSearchInput" class="form-control" placeholder="Search patient by name or phone...">
+                <button class="btn btn-primary" type="button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+        <div class="col-md-6 text-end">
+            <a href="{% url 'patient_register' %}" class="btn btn-primary">
+                <i class="fas fa-user-plus me-2"></i>Register New Patient
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-section">
+                {% if patients %}
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="patientTable">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th><i class="fas fa-hashtag me-1"></i>ID</th>
+                                    <th><i class="fas fa-user me-1"></i>Name</th>
+                                    <th><i class="fas fa-birthday-cake me-1"></i>Age</th>
+                                    <th><i class="fas fa-venus-mars me-1"></i>Gender</th>
+                                    <th><i class="fas fa-phone me-1"></i>Phone</th>
+                                    <th><i class="fas fa-calendar-check me-1"></i>Visit Date</th>
+                                    <th><i class="fas fa-cogs me-1"></i>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for patient in patients %}
+                                <tr>
+                                    <td>{{ patient.id }}</td>
+                                    <td>{{ patient.full_name }}</td>
+                                    <td>{{ patient.age }}</td>
+                                    <td>{{ patient.gender }}</td>
+                                    <td>{{ patient.phone_number }}</td>
+                                    <td>{{ patient.date_of_visit }}</td>
+                                    <td>
+                                        <a href="{% url 'patient_detail' patient.id %}" class="btn btn-sm btn-info">
+                                            <i class="fas fa-eye me-1"></i>View
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <p>Total Patients: <span class="badge bg-primary">{{ patients|length }}</span></p>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>No patients registered yet. 
+                        <a href="{% url 'patient_register' %}" class="alert-link">Register a new patient</a>.
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Simple client-side search functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('patientSearchInput');
+        const table = document.getElementById('patientTable');
+        
+        if (searchInput && table) {
+            searchInput.addEventListener('keyup', function() {
+                const searchText = searchInput.value.toLowerCase();
+                const rows = table.getElementsByTagName('tr');
+                
+                for (let i = 1; i < rows.length; i++) {
+                    const name = rows[i].getElementsByTagName('td')[1];
+                    const phone = rows[i].getElementsByTagName('td')[4];
+                    
+                    if (name && phone) {
+                        const nameText = name.textContent || name.innerText;
+                        const phoneText = phone.textContent || phone.innerText;
+                        
+                        if (nameText.toLowerCase().indexOf(searchText) > -1 || 
+                            phoneText.toLowerCase().indexOf(searchText) > -1) {
+                            rows[i].style.display = '';
+                        } else {
+                            rows[i].style.display = 'none';
+                        }
+                    }
+                }
+            });
+        }
+    });
+</script>
+{% endblock %} 

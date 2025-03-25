@@ -1,0 +1,108 @@
+{% extends 'receptionist/base.html' %}
+
+{% block title %}Home - {{ title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center mb-5">
+            <h1 class="display-4 page-header">Welcome to Hospital Management System</h1>
+            <p class="lead">An efficient system for managing patient records and appointments</p>
+        </div>
+    </div>
+    
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 text-center">
+                <div class="card-body">
+                    <i class="fas fa-user-plus fa-3x mb-3" style="color: var(--primary-color);"></i>
+                    <h3 class="card-title">Register Patient</h3>
+                    <p class="card-text">Add a new patient to the system with all necessary details</p>
+                    <a href="{% url 'patient_register' %}" class="btn btn-primary">
+                        <i class="fas fa-plus-circle me-1"></i> Register Patient
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 text-center">
+                <div class="card-body">
+                    <i class="fas fa-clipboard-list fa-3x mb-3" style="color: var(--primary-color);"></i>
+                    <h3 class="card-title">View Records</h3>
+                    <p class="card-text">Access and manage existing patient records</p>
+                    <a href="{% url 'patient_list' %}" class="btn btn-primary">
+                        <i class="fas fa-list me-1"></i> View Patients
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 text-center">
+                <div class="card-body">
+                    <i class="fas fa-clipboard-check fa-3x mb-3" style="color: var(--primary-color);"></i>
+                    <h3 class="card-title">Quick Stats</h3>
+                    <p class="card-text">Today's appointments and registration count</p>
+                    <a href="{% url 'patient_list' %}" class="btn btn-primary">
+                        <i class="fas fa-chart-bar me-1"></i> Check Stats
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="mb-0"><i class="fas fa-info-circle me-2"></i>About The System</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 class="mb-3"><i class="fas fa-star me-2"></i>Key Features</h4>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="fas fa-check-circle me-2" style="color: var(--primary-color);"></i>Easy patient registration with all necessary details</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle me-2" style="color: var(--primary-color);"></i>Automatic date tracking for visits</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle me-2" style="color: var(--primary-color);"></i>Simple patient information lookup</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle me-2" style="color: var(--primary-color);"></i>Secure storage of patient data</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle me-2" style="color: var(--primary-color);"></i>Intuitive interface for hospital staff</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="mb-3"><i class="fas fa-question-circle me-2"></i>How to Use</h4>
+                            <div class="accordion" id="howToUseAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                            <i class="fas fa-user-plus me-2"></i>Registering a New Patient
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#howToUseAccordion">
+                                        <div class="accordion-body">
+                                            Click on the "Register Patient" button and fill out all required information in the form. The system will automatically record the date of visit.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                            <i class="fas fa-search me-2"></i>Finding Patient Records
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#howToUseAccordion">
+                                        <div class="accordion-body">
+                                            Navigate to the "View Patients" section to see a list of all registered patients. Click on the "View" button to see detailed information.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

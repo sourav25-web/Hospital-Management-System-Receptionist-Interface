@@ -1,0 +1,113 @@
+{% extends 'receptionist/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="page-header">
+                <i class="fas fa-user-circle me-2"></i>Patient Details
+            </h2>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'patient_list' %}">Patients</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ patient.full_name }}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-section">
+                <div class="row">
+                    <div class="col-lg-12 mb-4">
+                        <div class="card mb-4">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h4 class="mb-0"><i class="fas fa-id-card me-2"></i>Patient Profile</h4>
+                                <span class="badge bg-primary">ID: {{ patient.id }}</span>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p><strong><i class="fas fa-user me-2" style="color: var(--primary-color);"></i>Name:</strong> {{ patient.full_name }}</p>
+                                        <p><strong><i class="fas fa-venus-mars me-2" style="color: var(--primary-color);"></i>Gender:</strong> {{ patient.gender }}</p>
+                                        <p><strong><i class="fas fa-birthday-cake me-2" style="color: var(--primary-color);"></i>Age:</strong> {{ patient.age }}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><strong><i class="fas fa-phone me-2" style="color: var(--primary-color);"></i>Phone:</strong> {{ patient.phone_number }}</p>
+                                        <p><strong><i class="fas fa-envelope me-2" style="color: var(--primary-color);"></i>Email:</strong> {{ patient.email }}</p>
+                                        <p><strong><i class="fas fa-id-card me-2" style="color: var(--primary-color);"></i>Aadhaar:</strong> {{ patient.aadhaar_number }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h4 class="mb-0"><i class="fas fa-map-marker-alt me-2"></i>Address Information</h4>
+                            </div>
+                            <div class="card-body">
+                                <p><strong><i class="fas fa-home me-2" style="color: var(--primary-color);"></i>Address:</strong></p>
+                                <p class="border-start border-3 ps-3" style="border-color: var(--primary-color) !important;">{{ patient.address }}</p>
+                                <p><strong><i class="fas fa-flag me-2" style="color: var(--primary-color);"></i>State:</strong> {{ patient.state }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h4 class="mb-0"><i class="fas fa-calendar-alt me-2"></i>Visit Information</h4>
+                            </div>
+                            <div class="card-body">
+                                <p><strong><i class="fas fa-calendar-check me-2" style="color: var(--primary-color);"></i>Date of Visit:</strong> {{ patient.date_of_visit }}</p>
+                                <p><strong><i class="fas fa-clock me-2" style="color: var(--primary-color);"></i>Registration Date:</strong> {{ patient.created_at }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="mb-0"><i class="fas fa-notes-medical me-2"></i>Health Information</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="border-start border-3 ps-3 py-2" style="border-color: var(--primary-color) !important; background-color: var(--light-color);">
+                                    <p>{{ patient.health_problem }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'patient_list' %}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>Back to Patient List
+                            </a>
+                            <div>
+                                <a href="#" class="btn btn-info">
+                                    <i class="fas fa-print me-2"></i>Print Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
